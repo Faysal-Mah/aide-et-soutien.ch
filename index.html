@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/gif" href="Logo.jpg">
+    <title>Service d'Accompagnement et Aide aux Seniors</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c5530;
+            background: linear-gradient(135deg, #f5f1e8 0%, #e8ddd4 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon > img{
+            scale: 0.1;
+            border-radius: 100%;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo-icon::before {
+            content: '♥';
+            color: white;
+            font-size: 24px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: #2c5530;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2c5530;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #d2691e;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #d2691e;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(210, 105, 30, 0.1), rgba(44, 85, 48, 0.1));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(210, 105, 30, 0.05) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #2c5530, #d2691e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #5a6b5d;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #d2691e, #cd853f);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(210, 105, 30, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(210, 105, 30, 0.5);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section:nth-child(even) {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .section h3 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2c5530;
+            position: relative;
+        }
+
+        .section h3::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #d2691e, #cd853f);
+            display: block;
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(135deg, #d2691e, #cd853f);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #d2691e;
+        }
+
+        .service-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2c5530;
+        }
+
+        .service-card p {
+            color: #666;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: #5a6b5d;
+        }
+
+        .about-image {
+            /*background: linear-gradient(135deg, #d2691e, #2c5530);*/
+            border-radius: 20px;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 20px); }
+        }
+
+        /* Values */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .value-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #d2691e;
+        }
+
+        /* Pricing */
+        .pricing-table {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: linear-gradient(135deg, #2c5530, #d2691e);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: rgba(210, 105, 30, 0.05);
+        }
+
+        /* Contact */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c5530;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #d2691e;
+        }
+
+        .contact-info {
+            padding: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: #d2691e;
+        }
+
+        .about-image > img{
+            scale: 0.5;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c5530;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: #d2691e;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: #2c5530;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section {
+                padding: 50px 0;
+            }
+
+            .pricing-table {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <img src="Logo2.jpg">
+                </div>
+                <h1>Service d'Accompagnement</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#apropos">À propos</a></li>
+                <li><a href="#tarifs">Tarifs</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="accueil" class="hero">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h2>Soutien à domicile pour personnes âgées et à mobilité réduite</h2>
+                <p>Plus de 15 ans d'expérience dans le soin et l'accompagnement humain, professionnel et bienveillant</p>
+                <a href="#contact" class="cta-button">Contactez-moi</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <div class="container">
+            <h3 class="fade-in">Mes Services</h3>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">🏥</div>
+                    <h4>Accompagnement médical</h4>
+                    <p>Je vous accompagne à vos rendez-vous médicaux en toute sécurité et avec bienveillance.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🛒</div>
+                    <h4>Courses et commissions</h4>
+                    <p>Aide pour vos courses quotidiennes et diverses commissions en ville.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">💬</div>
+                    <h4>Présence à domicile</h4>
+                    <p>Écoute, surveillance douce et moments d'échange dans le confort de votre foyer.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">📋</div>
+                    <h4>Soutien administratif</h4>
+                    <p>Aide de base pour vos démarches administratives et courriers.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🚶</div>
+                    <h4>Promenades et sorties</h4>
+                    <p>Sorties adaptées et activités sociales pour maintenir le lien social.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">❤️</div>
+                    <h4>Accompagnement personnalisé</h4>
+                    <p>Chaque service est adapté à vos besoins spécifiques et à votre rythme.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="apropos" class="section">
+        <div class="container">
+            <h3 class="fade-in">Qui suis-je ?</h3>
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h4 style="color: #d2691e; margin-bottom: 1rem; font-size: 1.5rem;">À propos de moi</h4>
+                    <p style="margin-bottom: 1.5rem;">Depuis plus de 14 ans, je suis engagée auprès des personnes âgées, des personnes à mobilité réduite, et de celles qui ont simplement besoin d'un coup de main au quotidien. Ce n'est pas juste un travail pour moi – c'est une vocation.</p>
+                    
+                    <p style="margin-bottom: 1.5rem;">J'ai travaillé dans les soins à domicile, les hôpitaux, les EMS, ainsi que dans des foyers pour personnes en situation de handicap. Diplômée du CEFF Santé en 2020, j'ai acquis une expérience solide, mais surtout une approche profondément humaine.</p>
+                    
+                    <p><strong>Écoute, patience, respect et bienveillance</strong> sont au cœur de ce que je fais. Ce projet d'accompagnement à domicile dans le Jura bernois, je le construis avec mon cœur.</p>
+                </div>
+                <div class="about-image fade-in">
+                    <img src="Fatima.png">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h3 class="fade-in">Mes Valeurs</h3>
+            <div class="values-grid">
+                <div class="value-item fade-in">
+                    <div class="value-icon">🤝</div>
+                    <h4>Respect</h4>
+                    <p>Chaque personne mérite d'être considérée avec respect, peu importe son âge ou sa condition.</p>
+                </div>
+                <div class="value-item fade-in">
+                    <div class="value-icon">👂</div>
+                    <h4>Écoute</h4>
+                    <p>Je prends le temps d'écouter, de partager un moment, un sourire, un souvenir.</p>
+                </div>
+                <div class="value-item fade-in">
+                    <div class="value-icon">🎯</div>
+                    <h4>Personnalisation</h4>
+                    <p>Chaque accompagnement est sur mesure, dans le respect de la dignité et de l'autonomie.</p>
+                </div>
+                <div class="value-item fade-in">
+                    <div class="value-icon">👨‍👩‍👧‍👦</div>
+                    <h4>Engagement familial</h4>
+                    <p>Je m'engage comme si c'était pour ma propre famille, avec sincérité et dévouement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tarifs" class="section">
+        <div class="container">
+            <h3 class="fade-in">Tarifs</h3>
+            <div class="pricing-table fade-in">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Tarif horaire</th>
+                            <th>Détails</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Accompagnement aux courses, promenades</td>
+                            <td>CHF 30.– / h</td>
+                            <td>À pied ou en transport public</td>
+                        </tr>
+                        <tr>
+                            <td>Accompagnement en voiture</td>
+                            <td>CHF 35.– / h</td>
+                            <td>+ CHF 0.70 / km</td>
+                        </tr>
+                        <tr>
+                            <td>Aide administrative légère</td>
+                            <td>CHF 32.– / h</td>
+                            <td>À domicile</td>
+                        </tr>
+                        <tr>
+                            <td>Forfait demi-journée (3h)</td>
+                            <td>CHF 85.–</td>
+                            <td>Selon disponibilité</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(210, 105, 30, 0.1); border-radius: 10px;">
+                    <h4 style="color: #d2691e; margin-bottom: 1rem;">Conditions</h4>
+                    <ul style="color: #666; line-height: 1.8;">
+                        <li>Durée minimale d'intervention : 1 heure</li>
+                        <li>Annulation gratuite jusqu'à 24h à l'avance</li>
+                        <li>Facturation mensuelle ou à la visite</li>
+                        <li>Assurance responsabilité civile incluse</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h3 class="fade-in">Contact</h3>
+            <div class="contact-content">
+                <div class="contact-form fade-in">
+                    <h4 style="margin-bottom: 2rem; color: #2c5530;">Demande de renseignements</h4>
+                    <form>
+                        <div class="form-group">
+                            <label for="nom">Nom *</label>
+                            <input type="text" id="nom" name="nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telephone">Téléphone</label>
+                            <input type="tel" id="telephone" name="telephone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Décrivez vos besoins ou posez vos questions..."></textarea>
+                        </div>
+                        <button type="submit" class="cta-button" style="width: 100%;">Envoyer le message</button>
+                    </form>
+                </div>
+                <div class="contact-info fade-in">
+                    <h4 style="margin-bottom: 2rem; color: #2c5530;">Informations de contact</h4>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <strong>Téléphone</strong><br>
+                            <span style="color: #666;" id="NumTel">[Votre numéro de téléphone]</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <strong>Email</strong><br>
+                            <span style="color: #666;" id="mail">[Votre email]</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <strong>Zone d'activité</strong><br>
+                            <span style="color: #666;">Jura bernois et environs</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">⏰</div>
+                        <div>
+                            <strong>Disponibilité</strong><br>
+                            <span style="color: #666;">Du lundi au vendredi<br>Selon vos besoins</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Service d'Accompagnement</h4>
+                    <p>Soutien à domicile pour personnes âgées et à mobilité réduite dans le Jura bernois.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <p>Accompagnement médical, courses, présence à domicile, aide administrative, promenades.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Zone d'activité : Jura bernois<br>
+                    Diplômée CEFF Santé 2020</p>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 2rem; margin-top: 2rem;">
+                <p>&copy; 2025 aide-et-soutien. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const phoneNumber = "+41 078 741 15 56"
+        const sendEmail = "info@aide-et-soutien.ch"
+        const subject = "Contact via aide-et-soutien.ch"
+
+
+        document.getElementById('mail').innerHTML = sendEmail;
+        document.getElementById('NumTel').innerHTML = phoneNumber;
+
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 30px rgba(0,0,0,0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Form submission (placeholder)
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Envoie du mail
+            let nom = document.getElementById('nom').value;
+            let email = document.getElementById('email').value;
+            let tel = document.getElementById('telephone').value;
+            let message = document.getElementById('message').value;
+            let body = ``
+
+            window.location.href = `mailto:${sendEmail}?subject=${subject}&body=Nom : ${nom}%0AEmail : ${email}%0ANumero de téléphone : ${tel}%0AMessage : ${message}`
+
+            this.reset();
+        });
+
+        // Mobile menu toggle (placeholder for future implementation)
+        document.querySelector('.mobile-menu').addEventListener('click', () => {
+            // Mobile menu functionality would go here
+            console.log('Mobile menu clicked');
+        });
+    </script>
+</body>
+</html>
