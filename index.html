@@ -667,25 +667,31 @@
             <div class="contact-content">
                 <div class="contact-form fade-in">
                     <h4 style="margin-bottom: 2rem; color: #2c5530;">Demande de renseignements</h4>
-                    <form>
-                        <div class="form-group">
-                            <label for="nom">Nom *</label>
-                            <input type="text" id="nom" name="nom" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="telephone">Téléphone</label>
-                            <input type="tel" id="telephone" name="telephone">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message *</label>
-                            <textarea id="message" name="message" rows="5" required placeholder="Décrivez vos besoins ou posez vos questions..."></textarea>
-                        </div>
-                        <button type="submit" class="cta-button" style="width: 100%;">Envoyer le message</button>
-                    </form>
+                    
+<form action="https://formsubmit.co/info@aide-et-soutien.ch" method="POST">
+    <!-- Champs cachés -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://aide-et-soutien.ch/merci.html">
+
+    <div class="form-group">
+        <label for="nom">Nom *</label>
+        <input type="text" id="nom" name="nom" required>
+    </div>
+    <div class="form-group">
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+        <label for="telephone">Téléphone</label>
+        <input type="tel" id="telephone" name="telephone">
+    </div>
+    <div class="form-group">
+        <label for="message">Message *</label>
+        <textarea id="message" name="message" rows="5" required placeholder="Décrivez vos besoins ou posez vos questions..."></textarea>
+    </div>
+    <button type="submit" class="cta-button" style="width: 100%;">Envoyer le message</button>
+</form>
+
                 </div>
                 <div class="contact-info fade-in">
                     <h4 style="margin-bottom: 2rem; color: #2c5530;">Informations de contact</h4>
